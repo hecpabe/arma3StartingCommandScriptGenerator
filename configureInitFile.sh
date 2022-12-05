@@ -21,7 +21,7 @@ startingCommand="./arma3server -name=$serverName -config=$configFile "
 # Main Program
 echo "#!/bin/bash" > $initFile
 echo "" >> $initFile
-echo "cd $HOME" >> $initFile
+echo "cd $serverPath" >> $initFile
 
 # Read mods and put them in the starting script
 ls -l mods/mods | awk '{print $9}' | grep "\S" > $tempFile
