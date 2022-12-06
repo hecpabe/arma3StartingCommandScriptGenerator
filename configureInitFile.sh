@@ -29,15 +29,9 @@ readarray -t array < $tempFile
 arrayLength=${#array[@]}
 arrayLength=$(($arrayLength - 1))
 
-startingCommand="$startingCommand -mod="
-
 for i in $(seq 0 $arrayLength);
 do
-  if [ $i -gt 0 ]
-  then
-    startingCommand="$startingCommand\;"
-  fi
-  startingCommand="$startingCommand$(echo ${array[$i]})"
+  startingCommand="$startingCommand -mod=$(echo ${array[$i]}) "
 done
 
 # Read serverside mods and put them in the starting script
@@ -46,15 +40,9 @@ readarray -t array < $tempFile
 arrayLength=${#array[@]}
 arrayLength=$(($arrayLength - 1))
 
-startingCommand="$startingCommand -serverMod="
-
 for i in $(seq 0 $arrayLength);
 do
-  if [ $i -gt 0 ]
-  then
-    startingCommand="$startingCommand\;"
-  fi
-  startingCommand="$startingCommand$(echo ${array[$i]})"
+  startingCommand="$startingCommand -serverMod=$(echo ${array[$i]}) "
 done
 
 echo $startingCommand >> $initFile
